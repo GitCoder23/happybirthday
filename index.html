@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 17th Birthday Samiul!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            pointer-events: none;
+        }
+
+        .hero-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: zoomIn 1.2s ease-out forwards;
+            filter: brightness(0.7) contrast(1.1);
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(1.1);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            letter-spacing: -1px;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+            font-weight: 300;
+        }
+
+        .birthday-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 12px 28px;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            animation: slideIn 0.8s ease-out 0.6s forwards;
+            opacity: 0;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Birthday Balloon Animations */
+        .balloon {
+            position: fixed;
+            width: 30px;
+            height: 40px;
+            border-radius: 50% 50% 50% 0;
+            pointer-events: none;
+            z-index: 10;
+            animation: floatUp 6s ease-in infinite;
+        }
+
+        .balloon::before {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.4);
+            left: 50%;
+            top: 100%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Sparkle/Confetti Burst */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 8;
+            font-size: 24px;
+            animation: sparkleFloat 2s ease-out forwards;
+        }
+
+        @keyframes sparkleFloat {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(0);
+            }
+        }
+
+        /* Hero Title Bounce */
+        .hero-content h1 {
+            display: inline-block;
+            animation: fadeInUp 1s ease-out 0.3s forwards, titleBounce 0.6s ease-out 1.3s;
+        }
+
+        @keyframes titleBounce {
+            0% {
+                transform: translateY(0);
+            }
+            25% {
+                transform: translateY(-15px);
+            }
+            50% {
+                transform: translateY(0);
+            }
+            75% {
+                transform: translateY(-8px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Badge Pulse */
+        .birthday-badge {
+            animation: fadeInUp 0.8s ease-out 0.6s forwards, badgePulse 0.8s ease-out 1.4s;
+        }
+
+        @keyframes badgePulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Firework burst effect */
+        .firework {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9;
+            animation: fireworkBurst 1.5s ease-out forwards;
+        }
+
+        @keyframes fireworkBurst {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(0);
+            }
+        }
+
+        /* Rotating stars around hero */
+        .rotating-star {
+            position: absolute;
+            font-size: 28px;
+            opacity: 0.8;
+            animation: rotateStar 3s linear infinite;
+        }
+
+        .rotating-star:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .rotating-star:nth-child(2) {
+            top: 15%;
+            right: 8%;
+            animation-delay: 0.5s;
+        }
+
+        .rotating-star:nth-child(3) {
+            bottom: 15%;
+            left: 3%;
+            animation-delay: 1s;
+        }
+
+        .rotating-star:nth-child(4) {
+            bottom: 20%;
+            right: 5%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes rotateStar {
+            0% {
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.3) rotate(180deg);
+            }
+            100% {
+                transform: scale(1) rotate(360deg);
+            }
+        }
+
+        /* Message Section */
+        .message-section {
+            background: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .message-section h2 {
+            font-size: 2.2rem;
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .message-text {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .decorative-line {
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            margin: 2rem auto;
+            border-radius: 2px;
+        }
+
+        /* Moments Section */
+        .moments-section {
+            background: #f8f9ff;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #333;
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+
+        .moments-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .moments-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .moment-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: scaleUp 0.6s ease-out backwards;
+        }
+
+        .moment-card:nth-child(1) { animation-delay: 0.1s; }
+        .moment-card:nth-child(2) { animation-delay: 0.2s; }
+        .moment-card:nth-child(3) { animation-delay: 0.3s; }
+        .moment-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes scaleUp {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .moment-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.25);
+        }
+
+        .moment-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .moment-label {
+            padding: 1.5rem;
+            text-align: center;
+            background: white;
+            font-weight: 600;
+            color: #667eea;
+            font-size: 1rem;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 4rem 2rem;
+        }
+
+        .gallery-section .section-title {
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            aspect-ratio: 1;
+            cursor: pointer;
+            animation: popIn 0.5s ease-out backwards;
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+        .gallery-item:nth-child(5) { animation-delay: 0.5s; }
+        .gallery-item:nth-child(6) { animation-delay: 0.6s; }
+        .gallery-item:nth-child(7) { animation-delay: 0.7s; }
+        .gallery-item:nth-child(8) { animation-delay: 0.8s; }
+        .gallery-item:nth-child(9) { animation-delay: 0.9s; }
+        .gallery-item:nth-child(10) { animation-delay: 1s; }
+        .gallery-item:nth-child(11) { animation-delay: 1.1s; }
+        .gallery-item:nth-child(12) { animation-delay: 1.2s; }
+        .gallery-item:nth-child(13) { animation-delay: 1.3s; }
+        .gallery-item:nth-child(14) { animation-delay: 1.4s; }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) rotate(-5deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0);
+            }
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-text {
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Final Message */
+        .finale-section {
+            background: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .finale-text {
+            font-size: 1.3rem;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .finale-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        .finale-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Confetti Animation */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #667eea;
+            pointer-events: none;
+            animation: fall linear forwards;
+            z-index: 0;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotateZ(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .message-section h2,
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .message-text {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                height: 80vh;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .message-section,
+            .moments-section,
+            .gallery-section,
+            .finale-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .message-section h2,
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .moment-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <img src="/mnt/user-data/uploads/IMG_0467.JPG" alt="Samiul" class="hero-image">
+            <div class="rotating-star">✨</div>
+            <div class="rotating-star">🎉</div>
+            <div class="rotating-star">🎂</div>
+            <div class="rotating-star">🎊</div>
+            <div class="hero-overlay">
+                <div class="hero-content">
+                    <h1>Happy 17th Birthday!</h1>
+                    <p>Samiul Islam</p>
+                    <div class="birthday-badge">🎂 April 11, 2009 🎉</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Message Section -->
+        <section class="message-section">
+            <h2>A Special Day For Someone Special</h2>
+            <div class="decorative-line"></div>
+            <p class="message-text">
+                On this beautiful day, we celebrate not just another year, but the incredible person you've become. 
+                Your journey has been filled with growth, kindness, and unforgettable moments. 
+                Today marks 17 years of bringing joy to those around you. 
+                May this year bring you endless possibilities, cherished memories, and dreams coming true.
+                <br><br>
+                You are truly one of a kind. Here's to making this year your best one yet! 🌟
+            </p>
+            <div class="decorative-line"></div>
+        </section>
+
+        <!-- Funny Moments Section -->
+        <section class="moments-section">
+            <h2 class="section-title">Our Funniest Moments</h2>
+            <div class="moments-grid">
+                <div class="moment-card">
+                    <img src="/mnt/user-data/uploads/20200626_204114.jpg" alt="Funny moment 1" class="moment-image">
+                    <div class="moment-label">😂 Pure Joy</div>
+                </div>
+                <div class="moment-card">
+                    <img src="/mnt/user-data/uploads/IMG20200901160226_00.jpg" alt="Funny moment 2" class="moment-image">
+                    <div class="moment-label">🤣 Genuine Laughter</div>
+                </div>
+                <div class="moment-card">
+                    <img src="/mnt/user-data/uploads/IMG20200922223022_00.jpg" alt="Funny moment 3" class="moment-image">
+                    <div class="moment-label">😄 Candid & Real</div>
+                </div>
+                <div class="moment-card">
+                    <img src="/mnt/user-data/uploads/20200417_172738.jpg" alt="Funny moment 4" class="moment-image">
+                    <div class="moment-label">😆 Pure Happiness</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="gallery-section">
+            <h2 class="section-title">Special Memories & Adventures</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="/mnt/user-data/uploads/IMG_0467.JPG" alt="Memory 1" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Forever Young</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/mnt/user-data/uploads/20200626_204114.jpg" alt="Memory 2" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Best Times</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/mnt/user-data/uploads/IMG20200901160226_00.jpg" alt="Memory 3" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Cherished</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/mnt/user-data/uploads/IMG20200922223022_00.jpg" alt="Memory 4" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Timeless</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/mnt/user-data/uploads/20200417_172738.jpg" alt="Memory 5" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Beautiful Smile</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/mnt/user-data/uploads/IMG20201120170658_00.jpg" alt="Memory 6" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Hero Mode 💪</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/mnt/user-data/uploads/IMG20201204153343_00.jpg" alt="Memory 7" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Road Adventures</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/mnt/user-data/uploads/IMG20201216162404_00.jpg" alt="Memory 8" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Field Days</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/mnt/user-data/uploads/20191021_134948.jpg" alt="Memory 9" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Nature Lover</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/mnt/user-data/uploads/20200527_184028.jpg" alt="Memory 10" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Family Bond</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/mnt/user-data/uploads/20200702_181929.jpg" alt="Memory 11" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Happy Moments</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/mnt/user-data/uploads/B1A53FBD-A6D4-49EC-BBFC-2CEBE5A87109.JPG" alt="Memory 12" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Together Forever</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/mnt/user-data/uploads/IMG20200906174454_00.jpg" alt="Memory 13" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Foodie Fun</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/mnt/user-data/uploads/IMG20201120165149_00.jpg" alt="Memory 14" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <span class="gallery-text">Statue Moment</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Message -->
+        <section class="finale-section">
+            <p class="finale-text">
+                Thank you for being the amazing person you are. 
+                Here's to 17 years of memories and countless more to come.
+                <br><br>
+                <strong>Make it Count! 🎊✨</strong>
+            </p>
+            <a href="#" class="finale-cta">Celebrate Together</a>
+        </section>
+    </div>
+
+    <script>
+        // Create animated birthday balloons
+        function createBalloon() {
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#FF6B9D', '#845EC2', '#00C9A7'];
+            balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
+            balloon.style.left = Math.random() * 100 + '%';
+            balloon.style.bottom = '-50px';
+            balloon.style.animationDuration = (Math.random() * 4 + 5) + 's';
+            document.body.appendChild(balloon);
+            
+            setTimeout(() => balloon.remove(), 9000);
+        }
+
+        // Create sparkle effects
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.innerHTML = '✨';
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = Math.random() * 150 + 100;
+            const tx = Math.cos(angle) * velocity;
+            const ty = Math.sin(angle) * velocity - 100;
+            
+            sparkle.style.setProperty('--tx', tx + 'px');
+            sparkle.style.setProperty('--ty', ty + 'px');
+            
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 2000);
+        }
+
+        // Create firework burst
+        function createFirework(x, y) {
+            const colors = ['#FFD700', '#FF69B4', '#00FF00', '#FF6347', '#4169E1', '#FF8C00'];
+            for (let i = 0; i < 12; i++) {
+                const firework = document.createElement('div');
+                firework.className = 'firework';
+                firework.style.background = colors[Math.floor(Math.random() * colors.length)];
+                firework.style.left = x + 'px';
+                firework.style.top = y + 'px';
+                
+                const angle = (i / 12) * Math.PI * 2;
+                const velocity = Math.random() * 200 + 150;
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
+                
+                firework.style.setProperty('--tx', tx + 'px');
+                firework.style.setProperty('--ty', ty + 'px');
+                
+                document.body.appendChild(firework);
+                setTimeout(() => firework.remove(), 1500);
+            }
+        }
+
+        // Start balloon creation on page load
+        window.addEventListener('load', () => {
+            // Create initial balloons
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => createBalloon(), i * 300);
+            }
+            
+            // Create sparkles around hero
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                const rect = hero.getBoundingClientRect();
+                setTimeout(() => {
+                    createFirework(rect.width / 2, rect.height / 2);
+                }, 800);
+                
+                for (let i = 0; i < 8; i++) {
+                    setTimeout(() => {
+                        const x = Math.random() * rect.width;
+                        const y = Math.random() * rect.height;
+                        createSparkle(x, y);
+                    }, 900 + i * 150);
+                }
+            }
+            
+            // Continue creating balloons every 3 seconds
+            setInterval(() => createBalloon(), 3000);
+        });
+
+        // Create sparkles on click
+        document.addEventListener('click', (e) => {
+            if (window.scrollY < window.innerHeight) {
+                createSparkle(e.clientX, e.clientY);
+            }
+        });
+
+        // Create confetti on page load
+        function createConfetti() {
+            const colors = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#00f2fe'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                document.body.appendChild(confetti);
+
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+
+        // Trigger confetti on scroll to special sections
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.classList.contains('moments-section')) {
+                    createConfetti();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const momentsSection = document.querySelector('.moments-section');
+        if (momentsSection) observer.observe(momentsSection);
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Load confetti on page load for extra celebration
+        window.addEventListener('load', () => {
+            setTimeout(createConfetti, 500);
+        });
+    </script>
+</body>
+</html>
